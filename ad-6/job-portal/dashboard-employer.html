@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">💼 <span>Job</span>Portal</a>
+        <div class="nav-links">
+            <span style="color:var(--gray)">🏢 <span id="user-name"></span></span>
+            <button onclick="logout()" class="btn btn-outline btn-sm">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="dashboard-layout" id="employer-dash">
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <a href="dashboard-employer.html" class="active"><span class="icon">📊</span> Dashboard</a>
+            <a href="post-job.html"><span class="icon">➕</span> Post a Job</a>
+            <a href="manage-jobs.html"><span class="icon">📋</span> Manage Jobs</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Employer Dashboard</h1>
+            <p>Manage your job postings and applicants</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number" id="stat-jobs">0</div>
+                <div class="label">Total Jobs Posted</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-open">0</div>
+                <div class="label">Open Positions</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-apps">0</div>
+                <div class="label">Total Applicants</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+                <h3>Your Job Postings</h3>
+                <a href="post-job.html" class="btn btn-primary btn-sm">➕ Post New Job</a>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Applicants</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="jobs-table"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Applicants Modal -->
+<div class="modal-overlay" id="job-modal">
+    <div class="modal" style="max-width:800px">
+        <button class="modal-close" onclick="closeModal('job-modal')">&times;</button>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

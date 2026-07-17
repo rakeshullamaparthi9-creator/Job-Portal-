@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Jobs - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">💼 <span>Job</span>Portal</a>
+        <div class="nav-links">
+            <a href="jobs.html" class="active">Browse Jobs</a>
+            <div id="nav-auth" style="display:flex;gap:.5rem"></div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Browse Jobs</h1>
+        <p>Find the right opportunity for you</p>
+    </div>
+
+    <div id="jobs-alert" class="alert"></div>
+
+    <div class="filter-bar">
+        <div class="form-group">
+            <label>Keyword</label>
+            <input type="text" id="search-input" class="form-control" placeholder="Title, company...">
+        </div>
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="location-input" class="form-control" placeholder="City or Remote">
+        </div>
+        <div class="form-group">
+            <label>Job Type</label>
+            <select id="type-filter" class="form-control">
+                <option value="">All Types</option>
+                <option>Full-time</option>
+                <option>Part-time</option>
+                <option>Remote</option>
+                <option>Contract</option>
+                <option>Internship</option>
+            </select>
+        </div>
+        <button id="search-btn" class="btn btn-primary">🔍 Search</button>
+    </div>
+
+    <div id="jobs-grid" class="job-grid">
+        <p style="color:var(--gray)">Loading jobs...</p>
+    </div>
+</div>
+
+<!-- Job Detail Modal -->
+<div class="modal-overlay" id="job-modal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('job-modal')">&times;</button>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<!-- Apply Modal -->
+<div class="modal-overlay" id="apply-modal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('apply-modal')">&times;</button>
+        <h3 id="apply-modal-title" style="margin-bottom:1.2rem"></h3>
+        <input type="hidden" id="apply-job-id">
+        <div class="form-group">
+            <label>Cover Letter (optional)</label>
+            <textarea id="cover-letter" class="form-control" rows="5" placeholder="Tell the employer why you're a great fit..."></textarea>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="submitApplication()">Submit Application</button>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

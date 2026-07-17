@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeker Dashboard - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">💼 <span>Job</span>Portal</a>
+        <div class="nav-links">
+            <span style="color:var(--gray)">👤 <span id="user-name"></span></span>
+            <button onclick="logout()" class="btn btn-outline btn-sm">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="dashboard-layout" id="seeker-dash">
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <a href="dashboard-seeker.html" class="active"><span class="icon">📊</span> Dashboard</a>
+            <a href="jobs.html"><span class="icon">🔍</span> Browse Jobs</a>
+            <a href="resume-builder.html"><span class="icon">📄</span> Resume Builder</a>
+            <a href="track-applications.html"><span class="icon">📋</span> My Applications</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>My Dashboard</h1>
+            <p>Track your job search progress</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number" id="stat-total">0</div>
+                <div class="label">Total Applications</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-pending">0</div>
+                <div class="label">Pending</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-short">0</div>
+                <div class="label">Shortlisted</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-hired">0</div>
+                <div class="label">Hired</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom:1rem">Recent Applications</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Company</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Applied</th>
+                        </tr>
+                    </thead>
+                    <tbody id="apps-table"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap">
+            <a href="jobs.html" class="btn btn-primary">🔍 Browse More Jobs</a>
+            <a href="resume-builder.html" class="btn btn-outline">📄 Update Resume</a>
+        </div>
+    </main>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

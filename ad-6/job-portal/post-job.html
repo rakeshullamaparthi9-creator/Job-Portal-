@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">💼 <span>Job</span>Portal</a>
+        <div class="nav-links">
+            <span style="color:var(--gray)">🏢 <span id="user-name"></span></span>
+            <button onclick="logout()" class="btn btn-outline btn-sm">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <a href="dashboard-employer.html"><span class="icon">📊</span> Dashboard</a>
+            <a href="post-job.html" class="active"><span class="icon">➕</span> Post a Job</a>
+            <a href="manage-jobs.html"><span class="icon">📋</span> Manage Jobs</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Post a New Job</h1>
+            <p>Fill in the details to attract the right candidates</p>
+        </div>
+
+        <div id="post-alert" class="alert"></div>
+
+        <div class="card" style="max-width:700px">
+            <form id="post-job-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Job Title *</label>
+                        <input type="text" name="title" class="form-control" placeholder="e.g. Frontend Developer" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name *</label>
+                        <input type="text" name="company" class="form-control" placeholder="Your company name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" name="location" class="form-control" placeholder="City or Remote">
+                    </div>
+                    <div class="form-group">
+                        <label>Job Type</label>
+                        <select name="type" class="form-control">
+                            <option>Full-time</option>
+                            <option>Part-time</option>
+                            <option>Remote</option>
+                            <option>Contract</option>
+                            <option>Internship</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Salary Range</label>
+                    <input type="text" name="salary" class="form-control" placeholder="e.g. $50,000 - $70,000 / year">
+                </div>
+                <div class="form-group">
+                    <label>Job Description *</label>
+                    <textarea name="description" class="form-control" rows="6" placeholder="Describe the role, responsibilities, and what a typical day looks like..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Requirements</label>
+                    <textarea name="requirements" class="form-control" rows="4" placeholder="List required skills, experience, education..."></textarea>
+                </div>
+                <div style="display:flex;gap:1rem">
+                    <button type="submit" class="btn btn-primary">📢 Post Job</button>
+                    <a href="dashboard-employer.html" class="btn btn-outline">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

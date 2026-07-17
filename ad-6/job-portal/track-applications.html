@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Applications - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">💼 <span>Job</span>Portal</a>
+        <div class="nav-links">
+            <span style="color:var(--gray)">👤 <span id="user-name"></span></span>
+            <button onclick="logout()" class="btn btn-outline btn-sm">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="dashboard-layout" id="seeker-dash">
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <a href="dashboard-seeker.html"><span class="icon">📊</span> Dashboard</a>
+            <a href="jobs.html"><span class="icon">🔍</span> Browse Jobs</a>
+            <a href="resume-builder.html"><span class="icon">📄</span> Resume Builder</a>
+            <a href="track-applications.html" class="active"><span class="icon">📋</span> My Applications</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>My Applications</h1>
+            <p>Track the status of all your job applications</p>
+        </div>
+
+        <div class="card">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Company</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Applied On</th>
+                        </tr>
+                    </thead>
+                    <tbody id="apps-table"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Status Legend -->
+        <div class="card" style="margin-top:1.5rem">
+            <h4 style="margin-bottom:1rem">Application Status Guide</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:1rem">
+                <span class="badge badge-yellow">pending — Awaiting review</span>
+                <span class="badge badge-blue">reviewed — Employer has seen it</span>
+                <span class="badge badge-purple">shortlisted — You're in the running</span>
+                <span class="badge badge-red">rejected — Not selected</span>
+                <span class="badge badge-green">hired — Congratulations!</span>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+// Override initSeekerDashboard to show full table with type column
+document.addEventListener('DOMContentLoaded', async () => {
+    const auth = await fetch('php/auth.php?action=check').then(r => r.json());
+    if (!auth.loggedIn || auth.role !== 'seeker') { window.location.href = 'login.html'; return; }
+    document.getElementById('user-name').textContent = auth.name;
+
+    const res = await fetch('php/apply.php?action=my_applications').then(r => r.json());
+    const apps = res.applications || [];
+    const tbody = document.getElementById('apps-table');
+    tbody.innerHTML = apps.length === 0
+        ? '<tr><td colspan="6" style="text-align:center;color:var(--gray)">No applications yet. <a href="jobs.html">Browse jobs</a></td></tr>'
+        : apps.map(a => `
+            <tr>
+                <td><strong>${a.title}</strong></td>
+                <td>${a.company}</td>
+                <td>${a.location || 'Remote'}</td>
+                <td><span class="badge badge-blue">${a.type}</span></td>
+                <td>${statusBadge(a.status)}</td>
+                <td>${new Date(a.applied_at).toLocaleDateString()}</td>
+            </tr>`).join('');
+});
+</script>
+</body>
+</html>
